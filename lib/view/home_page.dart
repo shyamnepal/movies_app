@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:movies_app/custom_widget/custom_navbar.dart';
 import 'package:movies_app/custom_widget/search..dart';
@@ -43,7 +43,9 @@ MoviesListView allmovies=MoviesListView();
         create: (BuildContext context) => allmovies,
         child: Consumer<MoviesListView>(
           builder: (context, value, child) {
+           // print("the value is "+value.moviesList.data);
             switch(value.moviesList.status){
+
               case Status.LOADING:
 
                 return Center(child: CircularProgressIndicator(),);
@@ -81,7 +83,7 @@ MoviesListView allmovies=MoviesListView();
                           height: height *.28,
                           child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: value.moviesList.data!.results!.length,
+                              itemCount: value.moviesList.data[1]!.results!.length,
                               itemBuilder: (context, index){
                                 return Stack(
 
@@ -90,13 +92,13 @@ MoviesListView allmovies=MoviesListView();
                                       padding:  EdgeInsets.only(right: width *.03),
                                       child: InkWell(
                                         onTap: (){
-                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> MoviesPage(moviesResult: value,index: index,)));
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> MoviesPage(moviesResult: value.moviesList.data[1],index: index,)));
 
                                         },
                                         child: ClipRRect(
 
                                           borderRadius: BorderRadius.circular(width *.04),
-                                          child: Image.network('http://image.tmdb.org/t/p/w500/${value.moviesList.data!.results![index]!.backdropPath}',
+                                          child: Image.network('http://image.tmdb.org/t/p/w500/${value.moviesList.data[1]!.results![index]!.backdropPath}',
                                             height: height *.4,
                                             width: width * .7,
                                             fit: BoxFit.cover,
@@ -112,7 +114,7 @@ MoviesListView allmovies=MoviesListView();
                                         child: Container(
                                           width: 200,
 
-                                          child: Text(value.moviesList.data!.results![index].originalTitle.toString(),style: TextStyle(color: HexColor.whiteColor,
+                                          child: Text(value.moviesList.data[1]!.results![index].originalTitle.toString(),style: TextStyle(color: HexColor.whiteColor,
                                           fontWeight: FontWeight.bold,
                                             fontSize: 16
                                           ),),
@@ -147,13 +149,13 @@ MoviesListView allmovies=MoviesListView();
 
                           child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: value.moviesList.data!.results!.length,
+                              itemCount: value.moviesList.data[0]!.results!.length,
                               itemBuilder: (context, index){
                                 return Padding(
                                   padding:  EdgeInsets.only(right: width *.03),
                                   child: InkWell(
                                     onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> MoviesPage(moviesResult: value,index: index,)));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> MoviesPage(moviesResult: value.moviesList.data[0],index: index,)));
 
                                     },
                                     child: Container(
@@ -176,15 +178,15 @@ MoviesListView allmovies=MoviesListView();
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Image.network('http://image.tmdb.org/t/p/w500/${value.moviesList.data!.results![index]!.backdropPath}',
+                                            Image.network('http://image.tmdb.org/t/p/w500/${value.moviesList.data[0]!.results![index]!.backdropPath}',
                                               height:  height *.3,
                                               width: width *.5,
                                               fit: BoxFit.cover,
 
                                             ),
-                                            CustomText(text: value.moviesList.data!.results![index].originalTitle.toString(), size:  height*.02,bold: FontWeight.bold,),
+                                            CustomText(text: value.moviesList.data[0]!.results![index].originalTitle.toString(), size:  height*.02,bold: FontWeight.bold,),
 
-                                            CustomText(text: value.moviesList.data!.results![index].mediaType.toString(), size: width *.05),
+                                            CustomText(text: value.moviesList.data[0]!.results![index].mediaType.toString(), size: width *.05),
                                             SizedBox(
                                                height: height*.01,
                                             ),
@@ -196,7 +198,7 @@ MoviesListView allmovies=MoviesListView();
                                                   SizedBox(
                                                     width: width *.01,
                                                   ),
-                                                  CustomText(text: value.moviesList.data!.results![index].voteAverage.toString(), size: width *.04)
+                                                  CustomText(text: value.moviesList.data[0]!.results![index].voteAverage.toString(), size: width *.04)
                                                 ],
                                               ),
                                             )
