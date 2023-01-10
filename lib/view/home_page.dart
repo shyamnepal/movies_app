@@ -5,6 +5,7 @@ import 'package:movies_app/custom_widget/search..dart';
 import 'package:movies_app/custom_widget/text.dart';
 import 'package:movies_app/data/response/status.dart';
 import 'package:movies_app/res/components/color.dart';
+import 'package:movies_app/view/all_movies.dart';
 import 'package:movies_app/view/movies_page.dart';
 import 'package:movies_app/view_model/movies_list_view.dart';
 import 'package:provider/provider.dart';
@@ -98,12 +99,12 @@ MoviesListView allmovies=MoviesListView();
                                         child: ClipRRect(
 
                                           borderRadius: BorderRadius.circular(width *.04),
-                                          child: Image.network('http://image.tmdb.org/t/p/w500/${value.moviesList.data[1]!.results![index]!.backdropPath}',
+                                          child:  value.moviesList.data[1]!.results![index]!.backdropPath !=null ? Image.network('http://image.tmdb.org/t/p/w500/${value.moviesList.data[1]!.results![index]!.backdropPath}',
                                             height: height *.4,
                                             width: width * .7,
                                             fit: BoxFit.cover,
 
-                                          ),
+                                          ): Icon(Icons.image_not_supported,size: height *.04)
 
                                         ),
                                       ),
@@ -136,7 +137,11 @@ MoviesListView allmovies=MoviesListView();
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               CustomText(text: 'New releases', size: height*.03, bold: FontWeight.bold,),
-                              CustomText(text: 'see all', size: height *.023,color: HexColor.pinkTextColor,)
+                              InkWell(
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AllMovies()));
+                                  },
+                                  child: CustomText(text: 'see all', size: height *.023,color: HexColor.pinkTextColor,))
                             ],
                           ),
                         ),
