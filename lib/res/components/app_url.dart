@@ -11,6 +11,10 @@ class AppUrl{
 
      return  listMoviesGenre=baseUrl + '/3/discover/movie?api_key=${ApiKey.apiKey}&with_genres=${id}';
   }
+  static var searchMovies;
+  static searchMoviesList(String title){
+    return searchMovies=baseUrl + '/3/search/movie?api_key=${ApiKey.apiKey}&query=${title}';
+  }
 
 
 

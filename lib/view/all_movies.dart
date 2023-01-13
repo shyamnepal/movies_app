@@ -97,7 +97,6 @@ class _AllMoviesState extends State<AllMovies> {
                                             ),
                                             CustomText(text: value.moviesList.data.results![index].originalTitle.toString(), size:  height*.02,bold: FontWeight.bold,),
 
-                                           // CustomText(text: value.moviesList.data.results![index].mediaType.toString(), size: width *.05),
                                             SizedBox(
                                               height: height*.01,
                                             ),

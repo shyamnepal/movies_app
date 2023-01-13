@@ -3,6 +3,7 @@ import 'package:movies_app/res/components/color.dart';
 import 'package:movies_app/view/discover.dart';
 import 'package:movies_app/view/home_page.dart';
 import 'package:movies_app/view_model/movies_list_view.dart';
+import 'package:movies_app/view_model/search_movies_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -46,8 +47,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_)=> MoviesListView(),
-      ),
+      ChangeNotifierProvider(create: (BuildContext context)=> SearchMoviesViews()),
+      ChangeNotifierProvider(create: (_)=> MoviesListView()),
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,

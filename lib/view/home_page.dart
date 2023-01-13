@@ -7,6 +7,7 @@ import 'package:movies_app/data/response/status.dart';
 import 'package:movies_app/res/components/color.dart';
 import 'package:movies_app/view/all_movies.dart';
 import 'package:movies_app/view/movies_page.dart';
+import 'package:movies_app/view/search_movies.dart';
 import 'package:movies_app/view_model/movies_list_view.dart';
 import 'package:provider/provider.dart';
 
@@ -72,7 +73,11 @@ MoviesListView allmovies=MoviesListView();
                               ),
                               Padding(
                                 padding:  EdgeInsets.only(right: width *.03),
-                                child: Search(searchIcon: Icons.search, iconSize: height*.03,),
+                                child: InkWell(
+                                    onTap: (){
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SearchMovies()));
+                                    },
+                                    child: Search(searchIcon: Icons.search, iconSize: height*.03,)),
                               ),
                             ],
                           ),
