@@ -18,17 +18,28 @@ class SearchMovies extends StatefulWidget {
 
 class _SearchMoviesState extends State<SearchMovies> {
 
+
   TextEditingController searchText =TextEditingController();
+  @override
+  void initState() {
+    Provider.of<SearchMoviesViews>(context,listen: false).fetchSearchMoviesList('avatar');
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final val=Provider.of<SearchMoviesViews>(context,listen: false);
-   val.fetchSearchMoviesList();
+
+
+
+
+
+
+
     final height=MediaQuery.of(context).size.height;
     final width= MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Consumer<SearchMoviesViews>(
-
         builder: (BuildContext context, value, Widget? child) {
         switch(value.moviesSearchList.status){
           case Status.LOADING:
@@ -46,18 +57,18 @@ class _SearchMoviesState extends State<SearchMovies> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Row(
-
                       children: [
+                        Platform.isIOS ?  InkWell(
 
-                        Platform.isIOS ?  Icon(Icons.arrow_back_ios,color: HexColor.whiteColor,)
-                            : Icon(Icons.arrow_back,color: HexColor.whiteColor,),
-
+                            onTap: (){Navigator.pop(context);},child: Icon(Icons.arrow_back_ios,color: HexColor.whiteColor,))
+                            : InkWell(
+                            onTap: (){Navigator.pop(context);},
+                            child:  Icon(Icons.arrow_back,color: HexColor.whiteColor,)),
                         Container(
                           margin: EdgeInsets.only(left: 20),
                           height: 40,
-                          width: 200,
+                          width: 250,
                           decoration: BoxDecoration(
                             color: HexColor.dividerColor,
                             borderRadius: BorderRadius.circular(12),
@@ -69,7 +80,6 @@ class _SearchMoviesState extends State<SearchMovies> {
                             // ],
                           ),
                           child: TextFormField(
-                            controller: searchText,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(
@@ -80,6 +90,13 @@ class _SearchMoviesState extends State<SearchMovies> {
                                 labelStyle: TextStyle(color: Colors.white)
 
                             ),
+                            onFieldSubmitted: (value){
+                              setState(() {
+                                searchText.text=value;
+                                val.fetchSearchMoviesList(searchText.text);
+                              });
+                            },
+
 
 
                           ),
@@ -98,8 +115,11 @@ class _SearchMoviesState extends State<SearchMovies> {
                       height: height *.03,
                     ),
 
+                    (value.moviesSearchList.data!.results!.length ==0) ?
+         CustomText(text: 'No result Found', size: 18)
 
-                    Flexible(
+
+                    : Flexible(
 
                       child: ListView.builder(
 
@@ -109,7 +129,7 @@ class _SearchMoviesState extends State<SearchMovies> {
                           itemBuilder: (context, item){
 
 
-                            return  Padding(
+                             return  Padding(
                               padding:  EdgeInsets.only(top: height *.03),
                               child: Column(
                                 children: [
@@ -120,10 +140,10 @@ class _SearchMoviesState extends State<SearchMovies> {
                                       child: (value.moviesSearchList.data!.results![item]!.posterPath ==null) ?
                                       Icon(Icons.image_not_supported) :
                                       (value.moviesSearchList.data!.results![item].backdropPath ==null) ?
-                                          Image.network('http://image.tmdb.org/t/p/w500/${value.moviesSearchList.data!.results![item]!.posterPath}')
+                                      Image.network('http://image.tmdb.org/t/p/w500/${value.moviesSearchList.data!.results![item]!.posterPath}')
 
 
-                                       : Image.network('http://image.tmdb.org/t/p/w500/${value.moviesSearchList.data!.results![item]!.backdropPath}'),
+                                          : Image.network('http://image.tmdb.org/t/p/w500/${value.moviesSearchList.data!.results![item]!.backdropPath}'),
 
                                     ),
                                     trailing: InkWell(
@@ -144,6 +164,8 @@ class _SearchMoviesState extends State<SearchMovies> {
                                 ],
                               ),
                             );
+
+
                           }),
                     ),
                   ],

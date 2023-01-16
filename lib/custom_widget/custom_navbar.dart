@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/custom_widget/text.dart';
 import 'package:movies_app/res/components/color.dart';
 import 'package:movies_app/view/discover.dart';
+import 'package:movies_app/view/show_favourite_movies.dart';
 class CustomNavbar extends StatelessWidget {
   const CustomNavbar({Key? key}) : super(key: key);
 
@@ -52,7 +53,9 @@ class CustomNavbar extends StatelessWidget {
           ),
 
           InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ShowFavouriteMovies()));
+            },
             child: Column(
               children: [
                 Icon(

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/res/components/color.dart';
 import 'package:movies_app/view/discover.dart';
 import 'package:movies_app/view/home_page.dart';
+import 'package:movies_app/view_model/all_movies_views.dart';
+import 'package:movies_app/view_model/favourite_model.dart';
+import 'package:movies_app/view_model/moviesGenre.dart';
+import 'package:movies_app/view_model/movies_genrelist_view.dart';
 import 'package:movies_app/view_model/movies_list_view.dart';
 import 'package:movies_app/view_model/search_movies_view.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +52,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (BuildContext context)=> SearchMoviesViews()),
-      ChangeNotifierProvider(create: (_)=> MoviesListView()),
+      ChangeNotifierProvider(create: (BuildContext context)=> MoviesListView()),
+      ChangeNotifierProvider(create: (_)=> AllMoviesViews()),
+      ChangeNotifierProvider(create: (_)=> MoviesGenreListView()),
+      ChangeNotifierProvider(create: (_)=> MoviesGenreView()),
+      ChangeNotifierProvider(create: (_)=> FavouriteModel()),
+
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,

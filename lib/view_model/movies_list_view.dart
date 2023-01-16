@@ -24,7 +24,9 @@ class MoviesListView extends ChangeNotifier{
 
     }).onError((error, stackTrace) {
       setMoviesList(ApiResponse.error(error.toString()));
+
     });
+
   }
 
 }

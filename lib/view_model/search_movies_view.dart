@@ -6,7 +6,7 @@ import 'package:movies_app/repository/search_movies_repository.dart';
 import '../data/response/api_response.dart';
 
 class SearchMoviesViews extends ChangeNotifier{
-  var search="avatar";
+
   final  _searchList=SearchMoviesRepository();
 
   ApiResponse<SearchMoviesModel> moviesSearchList=ApiResponse.loading();
@@ -15,7 +15,7 @@ class SearchMoviesViews extends ChangeNotifier{
     notifyListeners();
 
   }
-  Future<void> fetchSearchMoviesList() async{
+  Future<void> fetchSearchMoviesList(String search) async{
 
     setMoviesList(ApiResponse.loading());
     _searchList.SearchMoviesList(search).then((value) {
@@ -26,6 +26,7 @@ class SearchMoviesViews extends ChangeNotifier{
     }).onError((error, stackTrace) {
       setMoviesList(ApiResponse.error(error.toString()));
     });
+
   }
 
 }
