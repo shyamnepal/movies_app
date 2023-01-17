@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:movies_app/custom_widget/text.dart';
 import 'package:movies_app/res/components/color.dart';
-import 'package:movies_app/view/discover.dart';
-import 'package:movies_app/view/show_favourite_movies.dart';
+import 'package:movies_app/utils/routes_names.dart';
 class CustomNavbar extends StatelessWidget {
   const CustomNavbar({Key? key}) : super(key: key);
 
@@ -24,7 +23,9 @@ class CustomNavbar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.pushNamed(context, '/');
+            },
             child: Column(
               children: [
                 Icon(
@@ -38,7 +39,7 @@ class CustomNavbar extends StatelessWidget {
           ),
           InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> DiscoverPage()));
+             Navigator.pushNamed(context, RoutesName.discover);
             },
             child: Column(
               children: [
@@ -54,7 +55,7 @@ class CustomNavbar extends StatelessWidget {
 
           InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> ShowFavouriteMovies()));
+              Navigator.pushNamed(context, RoutesName.favourite);
             },
             child: Column(
               children: [
@@ -67,19 +68,19 @@ class CustomNavbar extends StatelessWidget {
               ],
             ),
           ),
-          InkWell(
-            onTap: (){},
-            child: Column(
-              children: [
-                Icon(
-                  Icons.download,
-                  size: 20,
-                  color: Colors.white,
-                ),
-                CustomText(text: 'Download', size: 16)
-              ],
-            ),
-          ),
+          // InkWell(
+          //   onTap: (){},
+          //   child: Column(
+          //     children: [
+          //       Icon(
+          //         Icons.download,
+          //         size: 20,
+          //         color: Colors.white,
+          //       ),
+          //       CustomText(text: 'Download', size: 16)
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

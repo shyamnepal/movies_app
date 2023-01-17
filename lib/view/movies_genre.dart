@@ -118,7 +118,7 @@ class _MoviesGenreState extends State<MoviesGenre> {
                                         padding:  EdgeInsets.symmetric(horizontal: width *.001),
                                         child: Row(
                                           children:  [
-                                            Icon(Icons.star, color: Colors.yellow,size: height *.04,),
+                                            Icon(Icons.star, color: Colors.yellow,size: height *.02,),
                                             SizedBox(
                                               width: width *.01,
                                             ),

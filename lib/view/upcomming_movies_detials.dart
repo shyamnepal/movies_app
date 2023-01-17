@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/custom_widget/movies_details_page.dart';
+import 'package:movies_app/model/upcomming_movies.dart';
 import 'package:video_player/video_player.dart';
 
 
 
 class UpcommingMoviesDetials extends StatefulWidget {
-  final dynamic moviesResult;
-  final int index;
-  const UpcommingMoviesDetials({Key? key, required this.moviesResult, required this.index}) : super(key: key);
+
+  const UpcommingMoviesDetials({Key? key}) : super(key: key);
 
   @override
   State<UpcommingMoviesDetials> createState() => _UpcommingMoviesDetialsState();
@@ -18,8 +18,10 @@ class _UpcommingMoviesDetialsState extends State<UpcommingMoviesDetials> {
 
   @override
   Widget build(BuildContext context) {
-    var value=widget.moviesResult;
-    var index=widget.index;
+    final  routeArg=ModalRoute.of(context)!.settings.arguments as Map<String,dynamic>;
+    final value=routeArg['moviesResult'];
+    final  index=routeArg['index'];
+
     print(index);
     final height=MediaQuery.of(context).size.height;
     final width =MediaQuery.of(context).size.width;

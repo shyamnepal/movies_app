@@ -5,6 +5,7 @@ import 'package:movies_app/custom_widget/search..dart';
 import 'package:movies_app/custom_widget/text.dart';
 import 'package:movies_app/data/response/status.dart';
 import 'package:movies_app/res/components/color.dart';
+import 'package:movies_app/utils/routes_names.dart';
 import 'package:movies_app/view/all_movies.dart';
 import 'package:movies_app/view/new_releass_detials.dart';
 import 'package:movies_app/view/search_movies.dart';
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage>{
                               padding:  EdgeInsets.only(right: width *.03),
                               child: InkWell(
                                   onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> SearchMovies()));
+                                    Navigator.pushNamed(context, RoutesName.searchMovies);
                                   },
                                   child: Search(searchIcon: Icons.search, iconSize: height*.03,)),
                             ),
@@ -100,7 +101,7 @@ class _HomePageState extends State<HomePage>{
                                     padding:  EdgeInsets.only(right: width *.03),
                                     child: InkWell(
                                       onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> UpcommingMoviesDetials(moviesResult: value.moviesList.data[1],index: index,)));
+                                        Navigator.pushNamed(context, RoutesName.upcommingMovies,arguments: {'moviesResult': value.moviesList.data[1],'index': index});
 
                                       },
                                       child: ClipRRect(
@@ -146,7 +147,7 @@ class _HomePageState extends State<HomePage>{
                             CustomText(text: 'New releases', size: height*.03, bold: FontWeight.bold,),
                             InkWell(
                                 onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>AllMovies()));
+                                  Navigator.pushNamed(context, RoutesName.showAllMovies);
                                 },
                                 child: CustomText(text: 'see all', size: height *.023,color: HexColor.pinkTextColor,))
                           ],
@@ -167,8 +168,7 @@ class _HomePageState extends State<HomePage>{
                                 padding:  EdgeInsets.only(right: width *.03),
                                 child: InkWell(
                                   onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> NewReleaseDetails(moviesResult: value.moviesList.data[0],index: index,)));
-
+                                    Navigator.pushNamed(context, RoutesName.newReleaseMovies,arguments: {'moviesResult': value.moviesList.data[0],'index': index});
                                   },
                                   child: Container(
                                     width: width *.5,

@@ -5,9 +5,8 @@ import 'package:video_player/video_player.dart';
 
 
 class NewReleaseDetails extends StatefulWidget {
-  final dynamic moviesResult;
-  final int index;
-  const NewReleaseDetails({Key? key, required this.moviesResult, required this.index}) : super(key: key);
+
+  const NewReleaseDetails({Key? key}) : super(key: key);
 
   @override
   State<NewReleaseDetails> createState() => _NewReleaseDetailsState();
@@ -18,8 +17,9 @@ class _NewReleaseDetailsState extends State<NewReleaseDetails> {
 
   @override
   Widget build(BuildContext context) {
-  var value=widget.moviesResult;
-  var index=widget.index;
+    final routeArg=ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+  final  value=routeArg['moviesResult'];
+  final  index=routeArg['index'] as int;
 
     final height=MediaQuery.of(context).size.height;
     final width =MediaQuery.of(context).size.width;

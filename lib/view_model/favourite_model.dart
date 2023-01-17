@@ -13,7 +13,7 @@ class FavouriteModel extends ChangeNotifier{
     notifyListeners();
   }
   void removeItems(id){
-    _selectedItem.removeWhere((element) => element.keys.first == id.keys.first);
+    _selectedItem.removeWhere((element) => element.keys.first == id.keys.first && element.values.first == id.values.first);
 
     notifyListeners();
   }

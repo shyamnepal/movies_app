@@ -21,9 +21,13 @@ class _SearchMoviesState extends State<SearchMovies> {
 
   TextEditingController searchText =TextEditingController();
   @override
+
   void initState() {
-    Provider.of<SearchMoviesViews>(context,listen: false).fetchSearchMoviesList('avatar');
+
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<SearchMoviesViews>(context,listen: false).fetchSearchMoviesList('avatar');
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -146,17 +150,17 @@ class _SearchMoviesState extends State<SearchMovies> {
                                           : Image.network('http://image.tmdb.org/t/p/w500/${value.moviesSearchList.data!.results![item]!.backdropPath}'),
 
                                     ),
-                                    trailing: InkWell(
-                                        onTap: (){
-                                          // Navigator.push(context, MaterialPageRoute(builder: (context)=> MoviesGenre(
-                                          //     id: value.moviesGenreList.data[0].genres[item].id,
-                                          //     genre: '${value.moviesGenreList.data[0].genres[item].name}')
-                                          // ),
-                                          // );
-
-                                        },
-                                        child: const Icon(Icons.arrow_forward_ios,color: Colors.white,size: 16,)),
-                                    contentPadding: EdgeInsets.zero,
+                                    // trailing: InkWell(
+                                    //     onTap: (){
+                                    //       // Navigator.push(context, MaterialPageRoute(builder: (context)=> MoviesGenre(
+                                    //       //     id: value.moviesGenreList.data[0].genres[item].id,
+                                    //       //     genre: '${value.moviesGenreList.data[0].genres[item].name}')
+                                    //       // ),
+                                    //       // );
+                                    //
+                                    //     },
+                                    //     child: const Icon(Icons.arrow_forward_ios,color: Colors.white,size: 16,)),
+                                    // contentPadding: EdgeInsets.zero,
                                   ),
                                   const Divider(
                                     color: HexColor.dividerColor,

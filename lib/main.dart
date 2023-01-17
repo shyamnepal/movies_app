@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/res/components/color.dart';
+import 'package:movies_app/utils/routes_names.dart';
+import 'package:movies_app/view/all_movies.dart';
 import 'package:movies_app/view/discover.dart';
 import 'package:movies_app/view/home_page.dart';
+import 'package:movies_app/view/new_releass_detials.dart';
+import 'package:movies_app/view/search_movies.dart';
+import 'package:movies_app/view/show_favourite_movies.dart';
+import 'package:movies_app/view/upcomming_movies_detials.dart';
 import 'package:movies_app/view_model/all_movies_views.dart';
 import 'package:movies_app/view_model/favourite_model.dart';
 import 'package:movies_app/view_model/moviesGenre.dart';
@@ -67,6 +73,17 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       home: HomePage(),
+      initialRoute: '/',
+      routes:  {
+
+        RoutesName.discover: (context)=> DiscoverPage(),
+        RoutesName.favourite: (context)=> ShowFavouriteMovies(),
+        RoutesName.upcommingMovies: (context)=> UpcommingMoviesDetials(),
+        RoutesName.searchMovies: (context)=> SearchMovies(),
+        RoutesName.showAllMovies: (context)=> AllMovies(),
+        RoutesName.newReleaseMovies: (context)=> NewReleaseDetails(),
+
+      },
       // Scaffold(
       //   bottomNavigationBar: BottomNavigationBar(
       //     backgroundColor: Colors.orange,
